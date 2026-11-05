@@ -1,0 +1,23 @@
+
+# Ambiente virtual
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Configurações e credenciais
+.env
+.streamlit/secrets.toml
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Arquivos temporários
+.DS_Store
+Thumbs.db
+
+# Microdados originais grandes
+PNADC_*.zip
+PNADC_*.txt
