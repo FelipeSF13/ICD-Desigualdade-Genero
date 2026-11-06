@@ -11,6 +11,8 @@ Projeto acadêmico desenvolvido para a disciplina de **Introdução à Ciência 
 **Curso:** Tecnologia em Sistemas para Internet — 5º semestre  
 **Instituição:** Centro Universitário Senac  
 **Ano:** 2026
+**Deploy:** https://icd-desigualdade-genero.streamlit.app/
+
 
 ---
 
@@ -314,6 +316,7 @@ https://docs.streamlit.io/
 PLOTLY. Documentação oficial do Plotly para Python. Disponível em:
 
 https://plotly.com/python/
+
 
 ---
 
