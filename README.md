@@ -12,7 +12,9 @@ Projeto acadêmico desenvolvido para a disciplina de **Introdução à Ciência 
 **Instituição:** Centro Universitário Senac  
 **Ano:** 2026
 
----
+### Dashboard online
+
+[Acessar dashboard interativa](https://icd-desigualdade-genero.streamlit.app/)
 
 ## 1. Sobre o projeto
 
