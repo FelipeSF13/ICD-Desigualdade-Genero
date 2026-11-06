@@ -13,7 +13,9 @@ Projeto acadêmico desenvolvido para a disciplina de **Introdução à Ciência 
 **Ano:** 2026                                                                                                                **Deploy:** https://icd-desigualdade-genero.streamlit.app/
 
 
----
+### Dashboard online
+
+[Acessar dashboard interativa](https://icd-desigualdade-genero.streamlit.app/)
 
 ## 1. Sobre o projeto
 
