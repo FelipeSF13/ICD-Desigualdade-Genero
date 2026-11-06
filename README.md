@@ -1,123 +1,132 @@
 
 # Desigualdade de Gênero no Mercado de Trabalho em São Paulo
 
-Projeto acadêmico desenvolvido para a disciplina de **Introdução à Ciência de Dados**, do curso de Tecnologia em Sistemas para Internet do Centro Universitário Senac.
+Projeto acadêmico de Introdução à Ciência de Dados, desenvolvido com dados reais da Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua), do Instituto Brasileiro de Geografia e Estatística (IBGE).
 
-## Integrantes
+O objetivo é analisar diferenças entre mulheres e homens no mercado de trabalho paulista, considerando participação entre pessoas ocupadas, rendimentos, escolaridade, idade e setores econômicos.
 
-- Felipe Freitas
-- Wanessa Gonçalves
+## Informações do projeto
 
-**Curso:** Tecnologia em Sistemas para Internet — 5º semestre  
+**Integrantes:** Felipe Freitas e Wanessa Gonçalves  
+**Curso:** Tecnologia em Sistemas para Internet  
 **Instituição:** Centro Universitário Senac  
-**Ano:** 2026                                                                                                                **Deploy:** https://icd-desigualdade-genero.streamlit.app/
-
+**Disciplina:** Introdução à Ciência de Dados  
+**Ano:** 2026
 
 ### Dashboard online
 
-[Acessar dashboard interativa](https://icd-desigualdade-genero.streamlit.app/)
+[Acessar a aplicação Streamlit](https://icd-desigualdade-genero.streamlit.app/)
 
-## 1. Sobre o projeto
+## 1. Objetivo
 
-O projeto tem como objetivo analisar diferenças de gênero no mercado de trabalho do estado de São Paulo, utilizando dados reais da Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua), realizada pelo IBGE.
+Investigar diferenças de gênero no mercado de trabalho do estado de São Paulo, utilizando dados da PNAD Contínua do quarto trimestre de 2025.
 
-A análise investiga diferenças entre mulheres e homens em relação à participação entre as pessoas ocupadas, aos rendimentos mensais habituais e à distribuição por setores econômicos.
+O projeto procura responder às seguintes questões:
 
-Também são realizadas comparações por faixa etária e escolaridade.
+- Qual é a participação de mulheres e homens entre as pessoas ocupadas?
+- Como os rendimentos médios mensais diferem entre os gêneros?
+- Como a composição por gênero varia entre setores econômicos?
+- Qual é a distribuição dos trabalhadores por idade e escolaridade?
+- É possível estimar o rendimento mensal habitual com um modelo de aprendizado de máquina?
 
-O trabalho está dividido em três partes:
+As análises possuem caráter exploratório, descritivo e preditivo, sem pretensão de identificar relações causais.
 
-- **Parte 1:** coleta, pré-processamento, indicadores e análise exploratória.
-- **Parte 2:** desenvolvimento de uma dashboard interativa utilizando Streamlit.
-- **Parte 3:** modelagem preditiva e integração dos resultados à aplicação.
+## 2. Fonte dos dados
 
-## 2. Problema de pesquisa
+Os dados utilizados são provenientes dos microdados trimestrais da PNAD Contínua, disponibilizados pelo IBGE.
 
-Quais diferenças existem entre mulheres e homens no mercado de trabalho do estado de São Paulo em relação à participação entre as pessoas ocupadas, aos rendimentos e à distribuição pelos setores de atividade econômica?
+**Pesquisa:** PNAD Contínua  
+**Período:** 4º trimestre de 2025  
+**Recorte geográfico:** Estado de São Paulo  
+**Código da UF:** 35
 
-## 3. Fonte dos dados
+A PNAD Contínua é uma pesquisa amostral. Por isso, os indicadores de participação e rendimento utilizam os pesos amostrais fornecidos pelo IBGE.
 
-Os dados utilizados são provenientes da PNAD Contínua, disponibilizada pelo Instituto Brasileiro de Geografia e Estatística (IBGE).
+O arquivo original dos microdados não foi incluído no repositório devido ao seu tamanho.
 
-- **Fonte:** IBGE — PNAD Contínua
-- **Período:** 4º trimestre de 2025
-- **Recorte geográfico:** Estado de São Paulo
-- **Código da UF:** 35
-- **Base original:** PNADC_042025.zip
-- **Registros da amostra paulista:** 38.483
+A aplicação utiliza o arquivo tratado:
 
-Link oficial:
+`dados/dados_tratados.csv`
 
-https://ftp.ibge.gov.br/Trabalho_e_Rendimento/Pesquisa_Nacional_por_Amostra_de_Domicilios_continua/Trimestral/Microdados/2025/
+## 3. Tecnologias utilizadas
 
-O arquivo original contém os microdados da pesquisa. Para facilitar sua utilização na dashboard, foi criada uma base tratada em CSV.
+- Python
+- Pandas
+- NumPy
+- Jupyter Notebook
+- Streamlit
+- Plotly
+- Scikit-learn
+- Joblib
+- Git e GitHub
 
-As estimativas consideram os pesos amostrais disponibilizados pelo IBGE.
+Pandas e NumPy são utilizados no tratamento e nos cálculos estatísticos.
 
-## 4. Tecnologias utilizadas
+O Jupyter Notebook organiza a análise exploratória da Parte 1.
 
-| Tecnologia | Finalidade |
-|---|---|
-| Python | Processamento e análise dos dados |
-| Pandas | Manipulação e filtragem dos dados |
-| NumPy | Cálculos estatísticos |
-| Streamlit | Desenvolvimento da dashboard |
-| Plotly | Gráficos interativos |
-| Jupyter Notebook | Análise exploratória da Parte 1 |
-| Git e GitHub | Versionamento e hospedagem do código |
-| Visual Studio Code | Ambiente de desenvolvimento |
+Streamlit e Plotly são utilizados na construção da aplicação interativa.
 
-## 5. Estrutura do projeto
+Scikit-learn é utilizado para treinamento e avaliação do modelo preditivo, enquanto Joblib permite salvar e carregar o modelo.
+
+## 4. Organização do repositório
 
 ```text
 ICD-Desigualdade-Genero/
-│
 ├── dados/
 │   └── dados_tratados.csv
-│
+├── modelos/
+│   ├── modelo_rendimento.joblib
+│   └── metricas_modelo.json
 ├── parte 1/
 │   ├── Parte1_Desigualdade_Genero.ipynb
 │   └── Relatorio_ICD_Desigualdade_Genero.docx
-│
 ├── parte 2/
-│   └── app.py
-│
+│   ├── app.py
+│   ├── modelo.py
+│   └── treinar_modelo.py
 ├── requirements.txt
 ├── README.md
 └── .gitignore
 ```
 
+A pasta `parte 1` contém os materiais da análise exploratória.
+
+A pasta `parte 2` contém a aplicação Streamlit e o código responsável pela modelagem preditiva.
+
+A pasta `modelos` armazena o modelo treinado e as métricas de avaliação.
+
+## 5. Preparação e tratamento dos dados
+
+A preparação foi realizada a partir dos microdados da PNAD Contínua.
+
+As principais variáveis utilizadas incluem:
+
+| Variável | Descrição |
+|---|---|
+| UF | Unidade da Federação |
+| V2007 | Sexo |
+| V2009 | Idade |
+| V1028 | Peso amostral |
+| VD4002 | Condição de ocupação |
+| VD4016 | Rendimento mensal habitual do trabalho principal |
+| VD4010 | Grupamento de atividade econômica |
+| VD3004 | Nível de instrução |
+
+Foram selecionados registros referentes ao estado de São Paulo.
+
+Para as análises de rendimento, são considerados valores positivos e válidos.
+
+Os dados foram organizados em variáveis interpretáveis, como gênero, escolaridade, faixa etária, setor econômico e rendimento.
+
+O tratamento resultou no arquivo `dados_tratados.csv`, utilizado pela dashboard e pela modelagem.
+
 ## 6. Parte 1 — Análise exploratória
 
-Na primeira etapa, foi realizado o carregamento e o pré-processamento dos microdados da PNAD Contínua.
+A Parte 1 apresenta uma análise descritiva das diferenças entre mulheres e homens no mercado de trabalho paulista.
 
-Foram selecionadas variáveis relacionadas a sexo, idade, escolaridade, condição de ocupação, setor econômico, rendimento e peso amostral.
-
-O tratamento incluiu:
-
-1. Seleção dos registros do estado de São Paulo.
-2. Identificação e organização das variáveis.
-3. Conversão das variáveis numéricas.
-4. Tratamento de registros ausentes e inválidos.
-5. Classificação das variáveis categóricas.
-6. Cálculo de indicadores ponderados.
-7. Construção de tabelas e gráficos comparativos.
+O estudo utiliza estatísticas ponderadas pelos pesos amostrais e visualizações para explorar a composição das pessoas ocupadas.
 
 ### Indicadores principais
-
-**Participação feminina entre as pessoas ocupadas**
-
-Percentual estimado de mulheres em relação ao total de pessoas ocupadas.
-
-**Diferença de rendimento entre homens e mulheres**
-
-Comparação dos rendimentos médios mensais habituais do trabalho principal.
-
-**Composição por setor econômico**
-
-Participação percentual de mulheres e homens dentro dos diferentes setores econômicos.
-
-### Resultados da Parte 1
 
 | Indicador | Resultado |
 |---|---:|
@@ -127,38 +136,46 @@ Participação percentual de mulheres e homens dentro dos diferentes setores eco
 | Rendimento médio feminino | R$ 3.599,50 |
 | Diferença percentual de rendimento | 23,79% |
 
-Os resultados referem-se ao quarto trimestre de 2025 e foram calculados utilizando os pesos amostrais.
+Os resultados referem-se ao quarto trimestre de 2025.
 
-**Importante:** os percentuais de participação representam a composição entre as pessoas ocupadas, não a taxa de ocupação da população. Os rendimentos são mensais, não ajustados pela jornada de trabalho.
+A diferença percentual de rendimento é calculada em relação ao rendimento médio masculino.
+
+**Importante:** os percentuais de participação representam a composição entre as pessoas ocupadas, e não a taxa de ocupação da população.
+
+Os rendimentos são mensais e não foram ajustados pela jornada de trabalho.
 
 As diferenças observadas não comprovam, isoladamente, discriminação causada pelo gênero.
 
 ## 7. Parte 2 — Dashboard interativa
 
-A Parte 2 transforma os resultados da análise exploratória em uma aplicação interativa desenvolvida com Streamlit.
+A Parte 2 transforma os resultados da análise exploratória e da modelagem preditiva em uma aplicação interativa desenvolvida com Streamlit.
 
-A dashboard permite visualizar indicadores e explorar diferenças de gênero no mercado de trabalho paulista.
+A dashboard permite visualizar indicadores, explorar diferenças entre grupos e consultar estimativas de rendimento calculadas por um modelo de aprendizado de máquina.
 
 ### Funcionalidades implementadas
 
 - Carregamento dos dados tratados em CSV.
-- Cálculo de indicadores com pesos amostrais.
-- Exibição de três indicadores principais.
-- Filtros interativos por faixa etária, escolaridade e setor econômico.
-- Atualização automática dos indicadores e gráficos conforme os filtros.
+- Cálculo de indicadores utilizando pesos amostrais.
+- Exibição dos três indicadores principais da pesquisa.
+- Filtros por faixa etária, escolaridade e setor econômico.
+- Atualização dos indicadores e gráficos conforme os filtros.
 - Gráficos interativos desenvolvidos com Plotly.
-- Consulta e exportação de registros filtrados em CSV.
-- Navegação entre diferentes seções da análise.
+- Consulta e exportação dos registros filtrados em CSV.
+- Navegação entre cinco seções.
+- Exibição dos resultados da modelagem preditiva.
+- Apresentação das métricas MAE e R².
+- Gráfico comparativo do erro das previsões por gênero.
+- Simulador interativo de rendimento mensal.
 
 ### Seções da aplicação
 
 **Visão geral**
 
-Apresenta os indicadores principais, um gráfico de rosca com a composição por gênero e um gráfico de barras comparando rendimentos médios.
+Apresenta os indicadores principais, um gráfico de rosca com a composição das pessoas ocupadas por gênero e um gráfico de barras comparando rendimentos médios.
 
 **Rendimento**
 
-Apresenta comparações dos rendimentos médios por escolaridade e gênero.
+Apresenta comparações dos rendimentos médios por gênero e escolaridade.
 
 **Setores econômicos**
 
@@ -166,63 +183,169 @@ Mostra a participação percentual de mulheres e homens dentro dos setores de at
 
 **Perfil dos trabalhadores**
 
-Apresenta a evolução dos rendimentos médios entre diferentes faixas etárias, separadamente por gênero.
+Apresenta a composição por gênero entre faixas etárias e níveis de escolaridade.
 
 **Análise preditiva**
 
-Seção reservada para apresentar os resultados da modelagem desenvolvida na Parte 3.
+Apresenta a metodologia de modelagem, os resultados de avaliação, um gráfico de erros por gênero e um simulador de rendimento mensal para perfis hipotéticos.
 
-## 8. Justificativa dos componentes Streamlit
+## 8. Modelagem preditiva
 
-Os componentes foram escolhidos de acordo com sua utilidade para a análise de dados.
+A modelagem preditiva tem como objetivo estimar o rendimento mensal habitual de trabalhadores a partir de características disponíveis na base.
+
+### Algoritmo
+
+Foi utilizado o **Random Forest Regressor**, algoritmo de aprendizado de máquina supervisionado baseado na combinação de múltiplas árvores de decisão.
+
+### Variável-alvo
+
+- Rendimento mensal habitual.
+
+### Variáveis explicativas
+
+- Gênero.
+- Idade.
+- Escolaridade.
+- Setor econômico.
+
+### Preparação para o treinamento
+
+Foram selecionados registros de pessoas ocupadas com rendimento positivo, peso amostral válido e informações completas das variáveis utilizadas.
+
+O rendimento foi transformado utilizando `log1p` para o treinamento. As estimativas são convertidas novamente para reais por meio de `expm1`.
+
+As variáveis categóricas são transformadas com `OneHotEncoder`.
+
+### Divisão dos dados
+
+O conjunto foi separado em:
+
+- 75% para treinamento.
+- 25% para teste.
+
+Foi utilizado `random_state=42` para permitir a reprodução da divisão dos dados.
+
+Os pesos amostrais foram considerados no treinamento e no cálculo das métricas de avaliação.
+
+### Resultados obtidos
+
+| Métrica | Resultado |
+|---|---:|
+| Registros válidos | 19.543 |
+| Registros de treinamento | 14.657 |
+| Registros de teste | 4.886 |
+| Erro médio absoluto (MAE) | R$ 2.082,10 |
+| Coeficiente R² | 0,1705 |
+| MAE do modelo de referência | R$ 2.919,25 |
+
+O modelo apresentou um erro médio absoluto menor do que o modelo de referência baseado na média ponderada do rendimento.
+
+Entretanto, o valor de R² demonstra capacidade preditiva limitada.
+
+### Avaliação por gênero
+
+| Gênero | Registros de teste | MAE |
+|---|---:|---:|
+| Homens | 2.690 | R$ 2.416,26 |
+| Mulheres | 2.196 | R$ 1.668,86 |
+
+Esses resultados mostram diferenças no erro de previsão entre os grupos.
+
+Entretanto, não permitem concluir, isoladamente, que o modelo apresenta discriminação algorítmica.
+
+### Simulador de rendimento
+
+A aplicação disponibiliza um formulário interativo no qual o usuário informa:
+
+- Gênero.
+- Idade.
+- Escolaridade.
+- Setor econômico.
+
+Ao clicar em **Calcular rendimento estimado**, a aplicação utiliza o modelo treinado para gerar uma estimativa de rendimento mensal.
+
+O valor apresentado é uma estimativa estatística para um perfil hipotético.
+
+Não representa uma garantia salarial nem uma previsão individual precisa.
+
+### Limitações da modelagem
+
+A capacidade preditiva é limitada porque o modelo utiliza apenas quatro características explicativas.
+
+Outras informações relevantes, como experiência profissional, ocupação detalhada, jornada de trabalho e tipo de vínculo, não foram incluídas.
+
+O modelo utiliza dados de um único trimestre e não permite identificar tendências históricas.
+
+A análise não estabelece relações causais entre gênero e rendimento.
+
+Os filtros laterais da dashboard não realizam novo treinamento. As métricas preditivas correspondem ao conjunto de teste definido durante a modelagem.
+
+## 9. Justificativa dos componentes Streamlit
+
+Os componentes foram selecionados conforme sua utilidade para a exploração dos dados e a apresentação dos resultados.
 
 | Componente | Justificativa |
 |---|---|
-| `st.metric` | Destaca os três indicadores principais da pesquisa. |
-| `st.sidebar` | Organiza a navegação e os filtros em uma área específica. |
-| `st.radio` | Permite navegar entre as seções da dashboard. |
-| `st.multiselect` | Permite selecionar faixas etárias, níveis de escolaridade e setores econômicos. |
-| `st.columns` | Organiza indicadores e gráficos lado a lado. |
-| `st.plotly_chart` | Exibe gráficos interativos para comparação dos resultados. |
-| `st.dataframe` | Apresenta tabelas detalhadas dos dados analisados. |
-| `st.download_button` | Permite exportar os registros filtrados em CSV. |
-| `st.cache_data` | Evita o carregamento desnecessário da base a cada interação. |
-| `st.info` e `st.caption` | Apresentam orientações, fontes e limitações da análise. |
-
-Os filtros permitem modificar o conjunto de dados utilizado nos cálculos, facilitando comparações entre diferentes perfis de trabalhadores.
+| `st.metric` | Apresenta indicadores principais e métricas de avaliação do modelo. |
+| `st.sidebar` | Organiza a navegação e os filtros. |
+| `st.radio` | Permite alternar entre as seções da aplicação. |
+| `st.multiselect` | Permite filtrar idade, escolaridade e setor econômico. |
+| `st.columns` | Organiza indicadores e visualizações. |
+| `st.plotly_chart` | Apresenta gráficos interativos. |
+| `st.dataframe` | Exibe tabelas de dados e resultados. |
+| `st.download_button` | Permite exportar os registros filtrados. |
+| `st.cache_data` | Evita recarregar desnecessariamente os dados e as métricas. |
+| `st.cache_resource` | Mantém o modelo preditivo carregado para reutilização. |
+| `st.form` | Agrupa os campos do simulador de rendimento. |
+| `st.selectbox` | Permite selecionar características categóricas do perfil. |
+| `st.number_input` | Permite informar a idade para a simulação. |
+| `st.form_submit_button` | Executa a previsão após o preenchimento do formulário. |
+| `st.info` | Apresenta explicações metodológicas. |
+| `st.caption` | Informa fontes, ressalvas e limitações. |
+| `st.expander` | Organiza informações complementares e exportação dos dados. |
 
 A escolha dos componentes prioriza clareza, interatividade e facilidade de utilização.
 
-## 9. Gráficos interativos
+## 10. Visualizações interativas
 
-A aplicação apresenta gráficos de diferentes tipos:
+A aplicação utiliza gráficos construídos com Plotly.
+
+Entre as visualizações estão:
 
 **Gráfico de rosca**
 
-Composição percentual de mulheres e homens entre as pessoas ocupadas.
+Apresenta a composição percentual de mulheres e homens entre as pessoas ocupadas.
 
 **Gráfico de barras**
 
-Comparação dos rendimentos médios mensais por gênero e escolaridade.
+Compara os rendimentos médios mensais por gênero.
 
-**Gráfico de barras horizontais empilhadas**
+**Gráfico de barras agrupadas**
 
-Composição percentual de mulheres e homens nos setores econômicos.
+Permite comparar rendimentos por escolaridade e a composição por faixa etária.
 
-**Gráfico de linhas**
+**Gráfico de barras empilhadas**
 
-Comparação dos rendimentos médios por faixa etária e gênero.
+Mostra a composição percentual por gênero em setores econômicos e níveis de escolaridade.
 
-Os gráficos foram desenvolvidos com Plotly, permitindo interações como a consulta de valores ao posicionar o cursor sobre os elementos.
+**Gráfico de barras horizontais**
 
-## 10. Como executar o projeto localmente
+Apresenta a participação feminina por setor econômico.
+
+**Gráfico de avaliação preditiva**
+
+Compara os erros médios absolutos obtidos pelo modelo para mulheres e homens.
+
+As visualizações permitem consultar informações adicionais ao posicionar o cursor sobre os elementos.
+
+## 11. Como executar o projeto localmente
 
 ### Pré-requisitos
 
 - Python instalado.
 - Git instalado, caso deseje clonar o repositório.
 - Visual Studio Code ou outro editor de código.
-- Conexão com a internet para instalar as dependências.
+- Conexão com a internet para instalar dependências.
 
 ### Passo 1 — Clonar o repositório
 
@@ -238,15 +361,13 @@ cd ICD-Desigualdade-Genero
 
 ### Passo 3 — Criar o ambiente virtual
 
-No terminal do Windows:
+No Windows:
 
 ```powershell
-python -m venv .venv
+py -m venv .venv
 ```
 
 ### Passo 4 — Instalar as dependências
-
-No PowerShell:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
@@ -260,49 +381,60 @@ No PowerShell:
 
 ### Passo 6 — Acessar a aplicação
 
-Abra o navegador no endereço:
+Abra o navegador em:
 
 http://localhost:8501
 
-O arquivo `dados/dados_tratados.csv` deve estar presente para que a aplicação carregue os dados.
-
 Para encerrar a aplicação, pressione `Ctrl + C` no terminal.
 
-## 11. Limitações da análise
+### Treinar novamente o modelo
 
-A PNAD Contínua é uma pesquisa amostral. Portanto, os indicadores representam estimativas e não contagens censitárias.
+Caso seja necessário gerar novamente o modelo e as métricas, execute:
 
-O projeto utiliza pesos amostrais nos cálculos, mas não estima intervalos de confiança ou erros-padrão considerando integralmente o desenho amostral complexo.
+```powershell
+.\.venv\Scripts\python.exe "parte 2/treinar_modelo.py"
+```
 
-Os indicadores de rendimento utilizam valores mensais habituais positivos e informados.
+O treinamento gera os arquivos:
 
-Além disso, os resultados apresentados correspondem a um único trimestre, não sendo possível identificar tendências históricas a partir desse período isoladamente.
+```text
+modelos/modelo_rendimento.joblib
+modelos/metricas_modelo.json
+```
 
-A dashboard permite explorar associações e diferenças entre grupos, mas não estabelece relações de causalidade.
+O arquivo `dados/dados_tratados.csv` deve estar disponível para executar o treinamento e a aplicação.
 
-## 12. Parte 3 — Modelagem preditiva
+Não é necessário ativar o ambiente virtual no PowerShell quando os comandos utilizam diretamente o executável Python da pasta `.venv`.
 
-A próxima etapa do projeto será dedicada à construção e avaliação de modelos preditivos.
+## 12. Limitações gerais
 
-Os resultados serão incorporados à seção "Análise preditiva" da dashboard.
+A PNAD Contínua é uma pesquisa amostral. Os indicadores apresentados são estimativas populacionais, e não contagens censitárias.
 
-Serão documentados, conforme o modelo desenvolvido:
+Os indicadores utilizam pesos amostrais, mas não foram calculados intervalos de confiança ou erros-padrão que considerem integralmente o desenho amostral complexo.
 
-- Objetivo da previsão.
-- Variáveis utilizadas.
-- Método de modelagem.
-- Métricas de avaliação.
-- Resultados e limitações.
+A análise de rendimentos considera valores mensais habituais positivos e informados.
 
-**Status:** aguardando desenvolvimento da Parte 3.
+O estudo corresponde exclusivamente ao quarto trimestre de 2025.
+
+Por esse motivo, não é possível estabelecer tendências temporais a partir desse recorte isolado.
+
+A dashboard permite explorar associações e diferenças entre grupos, mas não determina relações causais.
+
+As previsões geradas pelo modelo devem ser interpretadas considerando suas limitações e o desempenho observado no conjunto de teste.
 
 ## 13. Publicação
 
-O código-fonte do projeto está hospedado no GitHub:
+O código-fonte está disponível no GitHub:
 
 https://github.com/FelipeSF13/ICD-Desigualdade-Genero
 
-O deploy público da aplicação poderá ser realizado posteriormente utilizando o Streamlit Community Cloud.
+A dashboard foi publicada utilizando o Streamlit Community Cloud:
+
+https://icd-desigualdade-genero.streamlit.app/
+
+A publicação permite acessar a aplicação pelo navegador, sem instalar Python localmente.
+
+As atualizações enviadas à branch principal do repositório podem ser incorporadas ao aplicativo hospedado.
 
 ## 14. Referências
 
@@ -314,10 +446,13 @@ STREAMLIT. Documentação oficial. Disponível em:
 
 https://docs.streamlit.io/
 
-PLOTLY. Documentação oficial do Plotly para Python. Disponível em:
+PLOTLY. Documentação oficial para Python. Disponível em:
 
 https://plotly.com/python/
 
+SCIKIT-LEARN. Documentação oficial. Disponível em:
+
+https://scikit-learn.org/stable/
 
 ---
 
