@@ -1,0 +1,30 @@
+{
+  "n_total": 19543,
+  "n_treino": 14657,
+  "n_teste": 4886,
+  "mae_reais": 2082.1,
+  "r2": 0.1705,
+  "mae_baseline_reais": 2919.25,
+  "metodo": "Random Forest Regressor com log1p do rendimento",
+  "variaveis": [
+    "Genero",
+    "Idade",
+    "Escolaridade",
+    "Setor"
+  ],
+  "recorte": "SP, PNAD Contínua, 4º trimestre de 2025",
+  "test_size": 0.25,
+  "random_state": 42,
+  "resultados_por_genero": [
+    {
+      "genero": "Homens",
+      "n": 2690,
+      "mae_reais": 2416.26
+    },
+    {
+      "genero": "Mulheres",
+      "n": 2196,
+      "mae_reais": 1668.86
+    }
+  ]
+}
