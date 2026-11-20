@@ -860,6 +860,156 @@ elif pagina == "Análise preditiva":
         "PNAD Contínua do 4º trimestre de 2025."
     )
 
+    # ========================================================
+    # PARTE 3 - COMPARAÇÃO ENTRE OS MODELOS PREDITIVOS
+    # ========================================================
+
+    st.subheader("Comparação dos modelos — Parte 3")
+
+    st.write(
+        "Foram treinados e avaliados dois modelos de "
+        "aprendizado supervisionado para estimar o "
+        "rendimento mensal habitual dos trabalhadores: "
+        "Random Forest Regressor e Ridge Regression."
+    )
+
+    caminho_comparacao = (
+        BASE / "parte 3" / "comparacao_modelos.csv"
+    )
+
+    if caminho_comparacao.exists():
+
+        @st.cache_data
+        def carregar_comparacao(caminho):
+            return pd.read_csv(caminho, encoding="utf-8-sig")
+
+        comparacao_modelos = carregar_comparacao(
+            str(caminho_comparacao)
+        )
+
+        st.markdown("#### Resultados da avaliação")
+
+        tabela_comparacao = comparacao_modelos.copy()
+
+        st.dataframe(
+            tabela_comparacao,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "Modelo": st.column_config.TextColumn(
+                    "Modelo"
+                ),
+                "MAE (R$)": st.column_config.NumberColumn(
+                    "MAE (R$)",
+                    format="R$ %.2f"
+                ),
+                "R²": st.column_config.NumberColumn(
+                    "Coeficiente R²",
+                    format="%.4f"
+                ),
+            },
+        )
+
+        col_mae, col_r2 = st.columns(2)
+
+        with col_mae:
+            fig_mae = px.bar(
+                comparacao_modelos,
+                x="Modelo",
+                y="MAE (R$)",
+                color="Modelo",
+                text="MAE (R$)",
+                title="Erro médio absoluto (MAE)",
+                labels={
+                    "MAE (R$)": "Erro médio em reais"
+                },
+            )
+
+            fig_mae.update_traces(
+                texttemplate="R$ %{text:,.2f}",
+                textposition="outside"
+            )
+
+            fig_mae.update_layout(
+                showlegend=False,
+                yaxis_range=[
+                    0,
+                    comparacao_modelos["MAE (R$)"].max() * 1.20
+                ]
+            )
+
+            grafico(fig_mae)
+
+            st.caption(
+                "Quanto menor o MAE, melhor o desempenho."
+            )
+
+        with col_r2:
+            fig_r2 = px.bar(
+                comparacao_modelos,
+                x="Modelo",
+                y="R²",
+                color="Modelo",
+                text="R²",
+                title="Coeficiente de determinação (R²)",
+            )
+
+            fig_r2.update_traces(
+                texttemplate="%{text:.4f}",
+                textposition="outside"
+            )
+
+            fig_r2.update_layout(
+                showlegend=False,
+                yaxis_range=[
+                    0,
+                    max(
+                        0.25,
+                        comparacao_modelos["R²"].max() * 1.20
+                    )
+                ]
+            )
+
+            grafico(fig_r2)
+
+            st.caption(
+                "Quanto maior o R², melhor o desempenho."
+            )
+
+        # Identificar o melhor modelo pelo menor MAE
+        melhor = comparacao_modelos.loc[
+            comparacao_modelos["MAE (R$)"].idxmin()
+        ]
+
+        diferenca_mae = (
+            comparacao_modelos["MAE (R$)"].max()
+            - comparacao_modelos["MAE (R$)"].min()
+        )
+
+        st.success(
+            f"Melhor modelo pelo MAE: {melhor['Modelo']}. "
+            f"Diferença entre os modelos: "
+            f"{moeda(diferenca_mae)}."
+        )
+
+        st.info(
+            "O Random Forest apresentou resultados "
+            "ligeiramente melhores do que o Ridge Regression. "
+            "Entretanto, ambos possuem capacidade preditiva "
+            "limitada. Os resultados podem auxiliar a "
+            "investigação de padrões, mas não demonstram "
+            "relações de causa e efeito."
+        )
+
+    else:
+        st.warning(
+            "O arquivo de comparação dos modelos não foi "
+            "encontrado. Execute o notebook da Parte 3 "
+            "para gerar comparacao_modelos.csv."
+        )
+
+    st.divider()
+
     if not ARQUIVO_MODELO.exists() or not ARQUIVO_METRICAS.exists():
         st.warning(
             "Os arquivos do modelo ainda não foram encontrados. "
