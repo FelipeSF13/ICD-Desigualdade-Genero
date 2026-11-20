@@ -459,3 +459,85 @@ https://scikit-learn.org/stable/
 **Centro Universitário Senac — 2026**  
 **Introdução à Ciência de Dados**  
 **Felipe Freitas e Wanessa Gonçalves**
+
+
+---
+
+## 15. Parte 3 — Comparação de modelos preditivos
+
+A Parte 3 aprofunda a modelagem preditiva desenvolvida anteriormente, realizando o treinamento, a avaliação e a comparação de dois algoritmos de aprendizado supervisionado.
+
+### Objetivo
+
+Comparar modelos de regressão capazes de estimar o rendimento mensal habitual de trabalhadores do estado de São Paulo, utilizando dados da PNAD Contínua do 4º trimestre de 2025.
+
+### Modelos utilizados
+
+**1. Random Forest Regressor**
+
+Algoritmo baseado na combinação de árvores de decisão, capaz de representar relações não lineares entre as variáveis explicativas e o rendimento.
+
+**2. Ridge Regression**
+
+Modelo de regressão linear com regularização L2, utilizado como alternativa para avaliar o desempenho de uma abordagem linear.
+
+### Variáveis utilizadas
+
+- Gênero;
+- Idade;
+- Escolaridade;
+- Setor econômico.
+
+**Variável-alvo:** rendimento mensal habitual.
+
+### Preparação dos dados
+
+Foram selecionados registros de pessoas ocupadas com rendimento positivo, peso amostral válido e informações completas nas variáveis explicativas.
+
+A amostra foi dividida em 75% para treinamento e 25% para teste, utilizando a mesma divisão para ambos os modelos.
+
+O rendimento foi transformado com `log1p` durante o treinamento e convertido novamente para reais utilizando `expm1`.
+
+### Comparação dos resultados
+
+| Métrica | Random Forest | Ridge Regression |
+|---|---:|---:|
+| Registros de treinamento | 14.657 | 14.657 |
+| Registros de teste | 4.886 | 4.886 |
+| MAE | R$ 2.082,10 | R$ 2.110,72 |
+| R² | 0,1705 | 0,1552 |
+
+O Random Forest apresentou o melhor desempenho entre os modelos avaliados, com erro médio absoluto R$ 28,62 menor do que o Ridge Regression.
+
+Entretanto, ambos apresentaram capacidade preditiva limitada. Os resultados não permitem estabelecer relações causais entre gênero e rendimento.
+
+### Integração com a dashboard
+
+A seção **Análise preditiva** da aplicação Streamlit apresenta:
+
+- Tabela comparativa dos dois modelos;
+- Gráfico de comparação do MAE;
+- Gráfico de comparação do R²;
+- Identificação do modelo com melhor desempenho;
+- Explicação dos resultados e suas limitações;
+- Simulador de rendimento utilizando Random Forest.
+
+A comparação é carregada a partir do arquivo `parte 3/comparacao_modelos.csv`.
+
+### Arquivos da Parte 3
+
+| Arquivo | Descrição |
+|---|---|
+| `Parte3_Modelagem_Preditiva.ipynb` | Notebook com treinamento, avaliação e comparação dos modelos. |
+| `comparacao_modelos.csv` | Resultados calculados no notebook. |
+| `Relatorio_Parte3_Modelagem_Preditiva.docx` | Relatório acadêmico com metodologia, justificativas, resultados e conclusões. |
+
+Os arquivos estão disponíveis na pasta `parte 3` do repositório.
+
+### Limitações e possíveis melhorias
+
+Os modelos consideram somente quatro variáveis explicativas e utilizam dados de um único trimestre.
+
+Como continuidade, seria possível incorporar outras características dos trabalhadores, avaliar diferentes períodos da PNAD Contínua, ajustar hiperparâmetros e testar novos algoritmos.
+
+**Status:** treinamento, comparação, relatório e integração local com o Streamlit concluídos. Publicação da atualização no GitHub pendente.
